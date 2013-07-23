@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mostrando los tipo de usuarios</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"  type="text/javascript"></script>
+</head>
+<body>
+<div id="contador"></div>
+
+
+<form method="post" action="/actualizar/{{ dato.id }}">{% csrf_token %}
+    <input id="id_platino" name="platino" type="number" placeholder="Platino">
+    <input id="id_oro" name="oro" type="number" placeholder="oro">
+    <input id="id_plata" name="plata" type="number" placeholder="Plata">
+     <button type="submit" class="btn">Actualizar</button>
+</form>
+
+
+
+
+<script type="text/javascript">
+	var json = "{{dato.descripcion}}";
+	var json1 = JSON.parse(json.replace(/&quot;/g,'"'));
+	var platino = json1.contador["platino"];
+	var oro = json1.contador["oro"];
+	var plata = json1.contador["plata"];
+  $(function() {
+    $( "#contador" ).html('<p>Oro = <b> '+ oro +'</b></p><p>Plata = <b> '+ plata +'</b></p><p>Platino = <b> '+ platino +'</b></p>')
+  });
+
+
+</script>
+
+</body>
+</html>

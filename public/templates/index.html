@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Probando json con mysql</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"  type="text/javascript"></script>
+
+
+
+
+
+</head>
+<body>
+<a href="/nuevo">Agregar nuevo json</a>
+
+<h1>Monstrando lista de jsons</h1>
+{% if lista %}
+	{% for list in lista %}
+		<div id="contador"></div>
+<script type="text/javascript">
+	var json = '{{list.descripcion}}'	;
+	var json1 = JSON.parse(json.replace(/&quot;/g,'"'));
+	var platino = json1.contador["platino"];
+	var oro = json1.contador["oro"];
+	var plata = json1.contador["plata"];
+	var html = '<h2>{{list.nombre}}</h2><p>Oro = <b> '+ oro +'</b></p><p>Plata = <b> '+ plata +'</b></p><p>Platino = <b> '+ platino +'</b></p> \
+    	 <a href="/mostrar/{{ list.id }}">mostrar cantidad</a><hr><br>';
+    $( "#contador" ).html(html);
+</script>
+
+	{% endfor %}
+{% else %}
+	<h2>No hay datos que mostrar</h2>
+{% endif %}
+
+
+
+
+
+
+
+
+</body>
+</html>
