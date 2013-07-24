@@ -10,7 +10,7 @@
 </div>
 
 <h2>Json original</h2>
-<p>{{dato.comentario}}</p>
+
 
 
 <script type="text/javascript">
@@ -27,13 +27,11 @@
         max ++;
       });
     promedio = sum / max;
-    $("#comentarios").append('<p> <b>' + index + '. Titulo: ' + json1['comentarios'][index]['titulo']  + '</b> </p> <p>' + json1['comentarios'][index]['comentario'] + '</p><small>'+ json1['comentarios'][index]['datetime'] +' </small>' + promedio);
+    $("#comentarios").append('<p> <b>' + index + '. Titulo: ' + json1['comentarios'][index]['titulo']  + '</b> </p> <p>' + json1['comentarios'][index]['comentario'] + '</p><small>'+ json1['comentarios'][index]['datetime'] +' </small>' + promedio + '<a href="/comentarios/modificar/{{ dato.id }}/'+ index +'"> modificar </a>' + '<a href="/comentarios/eliminar/{{ dato.id }}/'+ index +'"> eliminar </a>');
 
   });
 
 </script>
-
-
 
 
 </body>

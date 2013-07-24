@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modificar comentario</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"  type="text/javascript"></script>
+</head>
+<body>
+
+<form method="post" action="/comentarios/modificar/{{ dato.id }}/{{ id_json }}">{% csrf_token %}
+    <input id="id_fecha" name="fecha" type="datetime-local" placeholder="fecha">
+    <input id="id_titulo" name="titulo" type="text" placeholder="titulo">
+    <input id="id_comentario" name="comentario" type="text" placeholder="comentario">  
+    <button type="submit" class="btn">Actualizar</button>
+</form>
+
+
+
+</body>
+</html>

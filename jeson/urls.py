@@ -13,6 +13,8 @@ urlpatterns = patterns('',
 	url(r'^comentarios/nuevo/$', 'comentarios.views.nuevoComentario'),
 	url(r'^comentarios/mostrar/(?P<id_json>\d+)$', 'comentarios.views.mostrarJson'),
 	url(r'^comentarios/agregar/(?P<id_json>\d+)$', 'comentarios.views.agregarComentario'),
+	url(r'^comentarios/modificar/(?P<id_promocion>\d+)/(?P<id_json>\d+)$', 'comentarios.views.modificarComentario'),
+	url(r'^comentarios/eliminar/(?P<id_promocion>\d+)/(?P<id_json>\d+)$', 'comentarios.views.eliminarComentario'),
 )
 
 

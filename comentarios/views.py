@@ -45,10 +45,43 @@ def agregarComentario(request, id_json):
     	row = '{ "id_user": %s, "datetime": "%s", "titulo": "%s", "comentario": "%s", "calificaciones" : [{"id":%s, "id_user"\
     	: %s, "calificacion": %s }] }' % (id_user, datetime, titulo, comentario, id_calificacion, id_userPK, calificacion)
     	nuevo = json.loads(row)
-    	jeson["comentarios"].append(nuevo)
+    	if tjson.id == 2:
+    			for i in range(10000):
+    				jeson["comentarios"].append(nuevo)
+    	else:
+    		jeson["comentarios"].append(nuevo)
     	text = json.dumps(jeson)
     	tjson.comentario = text
     	tjson.save()
         return HttpResponseRedirect('/comentarios')
     else:
     	return render_to_response('comentarios/agregar.html', {'dato':id_json}, context_instance=RequestContext(request))
+
+
+def modificarComentario(request, id_promocion, id_json):
+	tjson = JComentario.objects.get(pk=id_promocion)
+	if request.method=='POST':
+		jeson = json.loads(tjson.comentario)
+		id_user = request.POST.get('user','')
+		datetime = request.POST.get('fecha','')
+		titulo = request.POST.get('titulo','')
+		comentario = request.POST.get('comentario','')
+		jeson["comentarios"][int(id_json)]["datetime"] = datetime
+		jeson["comentarios"][int(id_json)]["titulo"] = titulo
+		jeson["comentarios"][int(id_json)]["comentario"] = comentario
+		text = json.dumps(jeson)
+		tjson.comentario = text
+		tjson.save()
+		return HttpResponseRedirect('/comentarios/mostrar/'+id_promocion)
+	else:
+		return render_to_response('comentarios/modificar.html', {'dato':tjson, 'id_json':id_json}, context_instance=RequestContext(request))
+
+
+def eliminarComentario(request, id_promocion, id_json):
+	tjson = JComentario.objects.get(pk=id_promocion)
+	jeson = json.loads(tjson.comentario)
+	jeson["comentarios"].pop(int(id_json))
+	text = json.dumps(jeson)
+	tjson.comentario = text
+	tjson.save()
+	return HttpResponseRedirect('/comentarios/mostrar/'+id_promocion)
