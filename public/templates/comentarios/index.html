@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Probando json con mysql</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"  type="text/javascript"></script>
+
+
+
+
+
+</head>
+<body>
+<a href="/comentarios/nuevo">Agregar nuevo json</a>
+
+<h1>Monstrando lista de productos</h1>
+{% if lista %}
+	{% for list in lista %}
+		<div id="contador"></div>
+		<p>{{list.id}}<a href="/comentarios/mostrar/{{ list.id }}">mostrar comentarios del producto</a>|<a href="/comentarios/agregar/{{ list.id }}">agregar comentario al producto</a></p>
+	{% endfor %}
+{% else %}
+	<h2>No hay datos que mostrar</h2>
+{% endif %}
+
+
+
+
+
+</body>
+</html>

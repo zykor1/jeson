@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mostrando los comentarios del producto</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"  type="text/javascript"></script>
+</head>
+<body>
+<div id="comentarios">
+  <h2>json transformado</h2>
+</div>
+
+<h2>Json original</h2>
+<p>{{dato.comentario}}</p>
+
+
+<script type="text/javascript">
+  var json = '{{dato.comentario}}';
+  var json1 = JSON.parse(json.replace(/&quot;/g,'"'));
+
+  $.each(json1['comentarios'], function(index, value) {
+    var sum = 0;
+    var max = 0;
+    var promedio = 0;
+
+    $.each(json1['comentarios'][index]['calificaciones'], function(index1, value) {
+        sum = json1['comentarios'][index]['calificaciones'][index1]['calificacion'] + sum;
+        max ++;
+      });
+    promedio = sum / max;
+    $("#comentarios").append('<p> <b>' + index + '. Titulo: ' + json1['comentarios'][index]['titulo']  + '</b> </p> <p>' + json1['comentarios'][index]['comentario'] + '</p><small>'+ json1['comentarios'][index]['datetime'] +' </small>' + promedio);
+
+  });
+
+</script>
+
+
+
+
+</body>
+</html>
